@@ -34,6 +34,12 @@ public class Main {
             return null;
         });
 
+        // This is a test url for bootstrap
+        get("/home", ((request, response) -> {
+            response.redirect("/template1/index.html");
+            return null;
+        }));
+
         post("/query/:content", (request, response) -> {
             LuceneHandler mLuceneHandler = new LuceneHandler();
             System.out.println("Get Connection, data received: " + request.params("content"));
@@ -45,9 +51,12 @@ public class Main {
 
         post("/query/:field/:content", (request, response) -> {
             //System.out.println(response);
-            //QueryResult results = mLuceneHandler.search(request.params("field"), request.params("content"));
+            LuceneHandler mLuceneHandler = new LuceneHandler();
+            System.out.println("Get Connection, data received: " + request.params("content"));
+            ArrayList result = mLuceneHandler.search(request.params("field"), request.params("content"));
+            JSONArray result_json = JSONArray.fromObject(result);
 
-            return "Query Result:"+request.params("field");
+            return result_json;
         });
 
     }

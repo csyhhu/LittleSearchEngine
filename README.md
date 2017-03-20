@@ -21,6 +21,12 @@ Mar.17th upload:
 
 ***********************************************************************************************
 
+Mar.18th upload:
+1) Finish the basic background design and simple front end webpage
+2) Now can search according to "title", "content" and "code"
+
+***********************************************************************************************
+
 Required Java External Libraries:
 1) lucence (version 6.4.2)
 2) jsoup (version 1.10.2) 

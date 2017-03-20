@@ -1,21 +1,32 @@
 
 <!DOCTYPE html>
 <html>
+<div id="header">
 <head>
 <script src="https://code.jquery.com/jquery-3.2.0.min.js" type="text/javascript"></script>
 <meta charset="utf-8">
 <title>test</title>
 </head>
+</div>
 <body>
 
 <h1>Search Engine for Stackoverflow Data</h1>
-<p>First HTML</p>
+<p>Enter what you want to search</p>
 
 <form>
-<input id="title"/>
-<a href="#" id='title-btn'>button</a>
+<input id="SearchContent"/>
 </form>
 
+<p> Search by: </p>
+<form>
+    <input type="radio" name="FieldCheck" value="title" checked>Title
+    <br>
+    <input type="radio" name="FieldCheck" value="content">Content
+    <br>
+    <input type="radio" name="FieldCheck" value="code">Code
+</form>
+<br>
+<a href="#" id='title-btn'>Begin to search</a>
 
 <h2>Here is the result:</h2>
 <br>
@@ -23,9 +34,12 @@
 
 </body>
 <script type="text/javascript">
-// var data = "this is a test."
+
 $('#title-btn').on('click', function(){
-	$.post("/query/"+$('#title').val(), " ", function(res) {
+    var query = "query/" + $('input[type="radio"][name="FieldCheck"]:checked').val() + "/" + $('#SearchContent').val()
+    console.log(query);
+
+	$.post(query, " ", function(res) {
   		//$('#ShowResult').html(res);
   		$('#ShowResult').html("");
   		var parsedRes = jQuery.parseJSON(res);
@@ -37,6 +51,7 @@ $('#title-btn').on('click', function(){
             $('#ShowResult').append(parsedRes[i].content);
         }
 	});
+	// console.log($('input[type="radio"][name="FieldCheck"]:checked').val())
 });
 </script>
 
