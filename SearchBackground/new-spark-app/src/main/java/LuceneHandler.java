@@ -41,7 +41,7 @@ public class LuceneHandler {
 
         try {
             //directory = FSDirectory.open(Paths.get("/media/csy/New Volume/Courses/Infomation Retrieval/WorkSpace/wholeIndex"));
-            directory = FSDirectory.open(Paths.get("../100000000Index"));
+            directory = FSDirectory.open(Paths.get("/media/csy/New Volume/Courses/Infomation Retrieval/WorkSpace/SearchEngine2/20000Index"));
             //indexWrite = new IndexWriter(directory, indexWriterConfig);
         } catch (Exception e) {
             e.printStackTrace();

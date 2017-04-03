@@ -61,7 +61,7 @@ public class Main {
             return result_json;
         });
 
-        post("/multiquery/:Question/:ques_cont/:Answer/:ans_cont/:Code/:code_cont/:TopN", (request, response) -> {
+        post("/multiquery/Question/:ques_cont/Answer/:ans_cont/Code/:code_cont/TopN/:TopN", (request, response) -> {
             System.out.println(request.params());
             LuceneHandler mLuceneHandler = new LuceneHandler();
             ArrayList result = mLuceneHandler.multisearch(request.params("ques_cont"), request.params("ans_cont"), request.params("code_cont"), request.params("TopN"));

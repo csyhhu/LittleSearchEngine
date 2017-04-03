@@ -63,19 +63,19 @@ public class SearchEngine{
         // Initalize a Lucene
         mLuceneHandler = new LuceneHandler();
 
-        // 1.实例化SAXParserFactory对象
+        // 1. Instantiate a SAXParserFactory object
         factory = SAXParserFactory.newInstance();
+        // This line ensures that this code can process very large file
         factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false);
 
-        // 2.创建解析器
+        // 2. Create Parser
         parser = factory.newSAXParser();
-        // 3.获取需要解析的文档，生成解析器,最后解析文档
+        // 3. Fetch the required file and generate parsers to parse this file
         posts = new File("/media/csy/New Volume/Courses/Infomation Retrieval/WorkSpace/dataset/Posts.xml");
         dh = new SaxHandler(mLuceneHandler);
 
         //Use SAX to read in and process the xml data, meanwhile create index because the posts is too big.
         //  If finish indexing, comment the  line.
-
         parser.parse(posts, dh);
 
         Date end = new Date();

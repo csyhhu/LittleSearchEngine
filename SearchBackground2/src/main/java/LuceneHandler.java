@@ -47,19 +47,34 @@ public class LuceneHandler {
     }
 
     public ArrayList<Map> multisearch(String ques_cont, String ans_cont, String code_cont, String topN) throws IOException, ParseException {
-        System.out.println("Now Searching: " + ques_cont + " in Question, " + ans_cont + " in Answer, " + code_cont + " in Code");
+        System.out.println("Now Searching: " + ques_cont + " in Question, " + ans_cont + " in Answer, " + code_cont + " in Code, with topN: " + topN);
 
         DirectoryReader reader = DirectoryReader.open(directory);
         IndexSearcher searcher = new IndexSearcher(reader);
 
         Query ques_query = new TermQuery(new Term("Question", ques_cont));
-        BooleanClause ques_bc = new BooleanClause(ques_query, BooleanClause.Occur.MUST);
+        BooleanClause ques_bc = null;
+        if (ques_cont.equals("-1")){
+            ques_bc = new BooleanClause(ques_query, BooleanClause.Occur.SHOULD);
+        } else {
+            ques_bc = new BooleanClause(ques_query, BooleanClause.Occur.MUST);
+        }
 
         Query ans_query = new TermQuery(new Term("Answer", ans_cont));
-        BooleanClause ans_bc = new BooleanClause(ans_query, BooleanClause.Occur.MUST);
+        BooleanClause ans_bc = null;
+        if (ans_cont.equals("-1")){
+            ans_bc = new BooleanClause(ans_query, BooleanClause.Occur.SHOULD);
+        } else {
+            ans_bc = new BooleanClause(ans_query, BooleanClause.Occur.MUST);
+        }
 
         Query code_query = new TermQuery(new Term("Code", code_cont));
-        BooleanClause code_bc = new BooleanClause(code_query, BooleanClause.Occur.MUST);
+        BooleanClause code_bc = null;
+        if (code_cont.equals("-1")){
+            code_bc = new BooleanClause(code_query, BooleanClause.Occur.SHOULD);
+        } else {
+            code_bc = new BooleanClause(code_query, BooleanClause.Occur.MUST);
+        }
 
         // final query
         BooleanQuery finalQuery = new BooleanQuery.Builder().add(ques_bc).add(ans_bc).add(code_bc).build();

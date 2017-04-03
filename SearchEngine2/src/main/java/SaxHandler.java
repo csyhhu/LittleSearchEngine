@@ -106,6 +106,18 @@ public class SaxHandler extends DefaultHandler {
                     System.out.println("Count now is : "  + count);
                 }
             }
+            // Code for Application 2
+            try(FileWriter fw = new FileWriter("data-tags.txt", true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)){
+                if (arg3.getValue("Tags") != null){
+                    System.out.println(arg3.getValue("CreationDate") +"," +  arg3.getValue("Tags"));
+                    out.println(arg3.getValue("CreationDate") +"," +  arg3.getValue("Tags"));
+                }
+
+            } catch (IOException e) {
+                //exception handling left as an exercise for the reader
+            }
         }
         count += 1;
         // System.out.print(arg2 + ":");

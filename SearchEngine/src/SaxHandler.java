@@ -44,7 +44,7 @@ public class SaxHandler extends DefaultHandler {
             currData = new Date();
             count = 0;
         }
-
+        /*
         if (count > terminateNum){
             try {
                 mLuceneHandler.endIndex();
@@ -53,7 +53,7 @@ public class SaxHandler extends DefaultHandler {
             }
             System.exit(0);
         }
-
+        */
     }
 
     @Override
@@ -67,9 +67,6 @@ public class SaxHandler extends DefaultHandler {
         super.endDocument();
     }
 
-    /* arg0是名称空间
-       arg1是包含名称空间的标签，如果没有名称空间，则为空
-       arg2是不包含名称空间的标签 */
     @Override
     public void endElement(String arg0, String arg1, String arg2)
             throws SAXException {
@@ -83,10 +80,6 @@ public class SaxHandler extends DefaultHandler {
         super.startDocument();
     }
 
-    /*arg0是名称空间
-      arg1是包含名称空间的标签，如果没有名称空间，则为空
-      arg2是不包含名称空间的标签
-      arg3很明显是属性的集合 */
     @Override
     public void startElement(String arg0, String arg1, String arg2,
                              Attributes arg3) throws SAXException {
@@ -124,7 +117,7 @@ public class SaxHandler extends DefaultHandler {
                     //System.out.print(Title);
                 }
             }
-
+            /*
             try {
                 //System.out.print("\n************************Adding index from Sax Handler************************\n");
                 if (Body == null){
@@ -137,6 +130,7 @@ public class SaxHandler extends DefaultHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            */
         }
         // System.out.print(arg2 + ":");
         super.startElement(arg0, arg1, arg2, arg3);

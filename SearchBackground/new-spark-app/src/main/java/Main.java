@@ -16,7 +16,6 @@ import static spark.Spark.*;
 
 public class Main {
 
-
     public static void main(String[] args) throws IOException, ParseException {
         /*
         QueryResult results = mLuceneHandler.search("title", "java");
